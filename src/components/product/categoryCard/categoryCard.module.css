@@ -1,0 +1,105 @@
+/*DefaultCard*/
+.defaultCard {
+  background: #ffffff;
+  text-align: center;
+  border: 1px solid #d4d4d4;
+  transition: all 0.3s ease-in-out;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 15px;
+  width: 40%;
+  margin: auto 20px;
+}
+
+.defaultCard:hover {
+  box-shadow: 0 15px 20px -15px #808080;
+}
+
+.cardImg img {
+  /* height: 200px; */
+  width: 100%;
+  object-fit: cover;
+}
+
+.defaultCard > * {
+  width: 100%;
+}
+
+.cardDetails {
+  padding: 0 20px 20px;
+  text-align: left;
+
+  margin: 12px auto;
+}
+
+.mt-each-1-5\@m {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+}
+
+.mt-each-1-5\@m > * {
+  width: calc((100% / 5) - 20px);
+}
+
+.mt-each-1-4\@m {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mt-each-1-4\@m > * {
+  width: calc((100% / 4) - 20px);
+}
+
+.mt-each-1-2\@m {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mt-each-1-2\@m > * {
+  width: calc((100% / 2) - 20px);
+}
+
+.cardTitle {
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.mt-card-price {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.mt-card-pieces {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: lightslategrey;
+}
+.cartContainer {
+  display: flex;
+}
+.cartBtn {
+  margin: 25px auto;
+}
+.cartBtn button {
+  background-color: #44c767;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  padding: 8px 7px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+}
+.cartBtn button:hover {
+  background-color: #5cbf2a;
+}

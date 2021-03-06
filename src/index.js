@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 
 import "./index.css";
 import App from "./App";
+import "../node_modules/antd/dist/antd.css";
 // import registerServiceWorker from "./registerServiceWorker";
 import productCategoryReducer from "./store/reducers/productCategory";
 // import orderReducer from "./store/reducers/orderx";
