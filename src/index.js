@@ -10,7 +10,7 @@ import App from "./App";
 import "../node_modules/antd/dist/antd.css";
 // import registerServiceWorker from "./registerServiceWorker";
 import productCategoryReducer from "./store/reducers/productCategory";
-// import orderReducer from "./store/reducers/orderx";
+import orderReducer from "./store/reducers/order";
 import authReducer from "./store/reducers/auth";
 import reportWebVitals from "./reportWebVitals";
 
@@ -21,7 +21,7 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   productCategory: productCategoryReducer,
-  // order: orderReducer,
+  order: orderReducer,
   auth: authReducer,
 });
 

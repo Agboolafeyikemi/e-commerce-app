@@ -40,7 +40,7 @@ export const checkAuthTimeout = (expirationTime) => {
   };
 };
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, isSignUp) => {
   return (dispatch) => {
     dispatch(authStart());
     const authData = {
@@ -50,7 +50,7 @@ export const auth = (email, password, isSignup) => {
     };
     let url =
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB6UTXCg9btatk2OCbMu2RkqposBEs4nHo";
-    if (!isSignup) {
+    if (!isSignUp) {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB6UTXCg9btatk2OCbMu2RkqposBEs4nHo";
     }

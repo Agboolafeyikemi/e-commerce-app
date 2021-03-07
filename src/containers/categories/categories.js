@@ -15,8 +15,12 @@ const Categories = (props) => {
   const categoryProducts = useSelector((state) => {
     return state.productCategory.categories;
   });
+
   const orders = useSelector((state) => state.order.orders);
-  const totalPrice = useSelector((state) => state.orders.totalPrice);
+
+  const deselectCategories = useSelector(
+    (state) => state.productCategory.deselectCategories
+  );
   const error = useSelector((state) => state.productCategory.error);
   const isAuthenticated = useSelector((state) => state.auth.token !== null);
   const token = useSelector((state) => state.auth.token !== null);
@@ -26,7 +30,17 @@ const Categories = (props) => {
   const onSetAuthRedirectPath = (path) =>
     dispatch(actions.setAuthRedirectPath(path));
 
-  // const onProductAdded = (proName) => dispatch(actions.addIngredient(proName));
+  const onCategorydeselect = (catName) =>
+    dispatch(actions.selectCategory(catName));
+
+  const onInitCategories = useCallback(
+    () => dispatch(actions.initCategories()),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    onInitCategories();
+  }, [onInitCategories]);
 
   const addCartHandler = (product) => {
     if (isAuthenticated) {
@@ -52,32 +66,29 @@ const Categories = (props) => {
     props.history.push("/checkout");
   };
 
-  // const disabledInfo = {
-  //   ...ings,
-  // };
-  // for (let key in disabledInfo) {
-  //   disabledInfo[key] = disabledInfo[key] <= 0;
-  // }
   let orderSummary = null;
   let products = error ? <p>Products can't be loaded!</p> : <Spinner />;
 
   if (categoryProducts) {
-    console.log(categoryProducts, "\n\n\n\n\n\n\n");
     products = (
       <Fragment>
-        <Product addToCart={addCartHandler} categories={categoryProducts} />
+        <Product
+          addToCart={addCartHandler}
+          categories={categoryProducts}
+          handleButtonClick={onCategorydeselect}
+          deselectCategories={deselectCategories}
+        />
       </Fragment>
     );
     orderSummary = (
       <OrderSummary
         orders={orders}
-        price={totalPrice}
         purchaseCancelled={purchaseCancelHandler}
         purchaseContinued={purchaseContinueHandler}
       />
     );
   }
-  // {salad: true, meat: false, ...}
+
   return (
     <Fragment>
       <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
@@ -87,8 +98,6 @@ const Categories = (props) => {
     </Fragment>
   );
 };
-
-// export default Categories;
 
 const mapDispatchToProps = (dispatch) => {
   return {
