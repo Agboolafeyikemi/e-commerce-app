@@ -9,6 +9,7 @@ import * as actions from "../../store/actions/index";
 
 const Categories = (props) => {
   const [purchasing, setPurchasing] = useState(false);
+  const [active, setActive] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -16,7 +17,7 @@ const Categories = (props) => {
     return state.productCategory.categories;
   });
   const orders = useSelector((state) => state.order.orders);
-  const totalPrice = useSelector((state) => state.orders.totalPrice);
+  console.log("ordersCategorires", orders);
   const error = useSelector((state) => state.productCategory.error);
   const isAuthenticated = useSelector((state) => state.auth.token !== null);
   const token = useSelector((state) => state.auth.token !== null);
@@ -62,7 +63,7 @@ const Categories = (props) => {
   let products = error ? <p>Products can't be loaded!</p> : <Spinner />;
 
   if (categoryProducts) {
-    console.log(categoryProducts, "\n\n\n\n\n\n\n");
+    console.log("categoryProductsISAVAILBALE", categoryProducts);
     products = (
       <Fragment>
         <Product addToCart={addCartHandler} categories={categoryProducts} />
@@ -71,7 +72,6 @@ const Categories = (props) => {
     orderSummary = (
       <OrderSummary
         orders={orders}
-        price={totalPrice}
         purchaseCancelled={purchaseCancelHandler}
         purchaseContinued={purchaseContinueHandler}
       />

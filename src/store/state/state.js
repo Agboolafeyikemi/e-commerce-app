@@ -1,11 +1,11 @@
 export default {
-  error: false,
+  error: true,
   categories: [
     {
       category: {
-        name: "Men Wear",
+        name: "Men's  Wear",
         id: 1,
-        deselect: false,
+        active: true,
         products: [
           {
             name: "T - shirt",
@@ -35,7 +35,7 @@ export default {
       category: {
         name: "Women's Wear",
         id: 2,
-        deselect: false,
+        active: true,
         products: [
           {
             name: "Top",
@@ -65,7 +65,7 @@ export default {
       category: {
         name: "Shoes",
         id: 3,
-        deselect: false,
+        active: true,
         products: [
           {
             name: "Sneaker",
@@ -95,7 +95,7 @@ export default {
       category: {
         name: "Perfumes",
         id: 4,
-        deselect: false,
+        active: true,
         products: [
           {
             name: "Unisex Perfume",
@@ -126,7 +126,7 @@ export default {
       category: {
         name: "Bags",
         id: 5,
-        deselect: false,
+        active: true,
         products: [
           {
             name: "Laptop Backpacks",

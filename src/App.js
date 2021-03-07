@@ -4,16 +4,16 @@ import { connect } from "react-redux";
 
 import Layout from "./hoc/Layout/Layout";
 import Categories from "./containers/categories/categories";
-// import Logout from './containers/Auth/Logout/Logout';
+import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
 
 // const Checkout = React.lazy(() => {
 //   return import("./containers/Checkout/Checkout");
 // });
 
-// const Orders = React.lazy(() => {
-//   return import('./containers/Orders/Orders');
-// });
+const Orders = React.lazy(() => {
+  return import("./containers/Orders/Orders");
+});
 
 const Auth = React.lazy(() => {
   return import("./containers/Auth/Auth");
@@ -33,13 +33,19 @@ const App = (props) => {
       <Redirect to="/" />
     </Switch>
   );
-
+  // const tranO = JSON.parse(localStorage.getItem("order"));
+  // const orders = tranO.prt;
+  console.log("propsAPP\n\n\n\n\n", props);
+  const orders = [props.orders];
   if (props.isAuthenticated) {
     routes = (
       <Switch>
         {/* <Route path="/checkout" render={(props) => <Checkout {...props} />} /> */}
-        {/* <Route path="/orders" render={(props) => <Orders {...props} />} /> */}
-        {/* <Route path="/logout" component={Logout} /> */}
+        <Route
+          path="/orders"
+          render={(props) => <Orders {...props} {...orders} />}
+        />
+        <Route path="/logout" component={Logout} />
         <Route path="/auth" render={(props) => <Auth {...props} />} />
         <Route path="/" exact component={Categories} />
         <Redirect to="/" />
@@ -59,12 +65,15 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
+    orders: state.order.orders,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+    onFetchOrders: (token, userId) =>
+      dispatch(actions.fetchOrders(token, userId)),
   };
 };
 

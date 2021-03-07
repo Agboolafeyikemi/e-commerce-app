@@ -3,29 +3,34 @@ import React, { Fragment } from "react";
 import Button from "../UI/Button/Button";
 
 const orderSummary = (props) => {
-  const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
-    return (
-      <li key={igKey}>
-        <span style={{ textTransform: "capitalize" }}>{igKey}</span>:{" "}
-        {props.ingredients[igKey]}
-      </li>
-    );
-  });
-
+  const { orders } = props;
+  let totalPrice = 0;
+  const ordersSummary =
+    orders &&
+    orders.map((order, index) => {
+      totalPrice += order.id.prt.price;
+      return (
+        <li key={index}>
+          <span style={{ textTransform: "capitalize" }}>
+            {order.id.prt.name}
+          </span>
+          : {order.id.prt.price}
+        </li>
+      );
+    });
   return (
     <Fragment>
-      <h3>Your Order</h3>
-      <p>A delicious burger with the following ingredients:</p>
-      <ul>{ingredientSummary}</ul>
+      <h3>Thanks for Trusting Us</h3>
+      <p>Your Cart List:</p>
+      <ul>{ordersSummary}</ul>
       <p>
-        <strong>Total Price: {props.price.toFixed(2)}</strong>
+        <strong>Total Price: {totalPrice.toFixed(2)}</strong>
       </p>
-      <p>Continue to Checkout?</p>
       <Button btnType="Danger" clicked={props.purchaseCancelled}>
-        CANCEL
+        Continue Shopping
       </Button>
       <Button btnType="Success" clicked={props.purchaseContinued}>
-        CONTINUE
+        Checkout
       </Button>
     </Fragment>
   );

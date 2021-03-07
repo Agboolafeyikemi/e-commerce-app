@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../../shared/utilty";
+import { updateObject } from "../../shared/utility";
 
 const initialState = {
   orders: [],
@@ -17,6 +17,7 @@ const purchaseProductStart = (state, action) => {
 
 const purchaseProductSuccess = (state, action) => {
   const newOrder = updateObject(action.order, { id: action.orderId });
+  console.log(state.orders, newOrder, "newOrders\n\n\n\n\n");
   return updateObject(state, {
     loading: false,
     purchased: true,
@@ -33,6 +34,7 @@ const fetchOrdersStart = (state, action) => {
 };
 
 const fetchOrdersSuccess = (state, action) => {
+  console.log("orderLOCALSTORAGESUCESS\n\n\n\n\n\n", state.orders);
   return updateObject(state, {
     orders: action.orders,
     loading: false,

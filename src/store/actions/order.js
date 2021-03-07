@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../hooks/http-error-handler";
 
-export const purchaseBurgerSuccess = (id, order) => {
+export const purchaseProductSuccess = (id, order) => {
   return {
     type: actionTypes.PURCHASE_PRODUCT_SUCCESS,
     orderId: id,
@@ -9,13 +9,13 @@ export const purchaseBurgerSuccess = (id, order) => {
   };
 };
 
-export const purchaseBurgerStart = () => {
+export const purchaseProductStart = () => {
   return {
     type: actionTypes.PURCHASE_PRODUCT_START,
   };
 };
 
-export const purchaseBurgerFail = (error) => {
+export const purchaseProductFail = (error) => {
   return {
     type: actionTypes.PURCHASE_PRODUCT_FAIL,
     error: error,
@@ -24,11 +24,17 @@ export const purchaseBurgerFail = (error) => {
 
 export const purchaseProduct = (order, token) => {
   return (dispatch) => {
-    dispatch(purchaseBurgerStart());
-    try {
-      dispatch(purchaseBurgerSuccess(order, token));
-    } catch {
-      dispatch(purchaseBurgerFail());
+    console.log("purchasePRODUCT\n\n\n\n\n\n\n\n,", order, token);
+    dispatch(purchaseProductStart());
+    const transformOrder = JSON.stringify(order.prt);
+    // const userId = order.prt.userId;
+    localStorage.setItem("order", transformOrder);
+    // console.log("setOrd\n\n\n\n\n\n", setOrd);
+
+    dispatch(purchaseProductSuccess(order, token));
+    // dispatch(purchaseProductSuccess(order, token));
+    if (!order || !token) {
+      dispatch(purchaseProductFail());
     }
   };
 };
@@ -42,6 +48,7 @@ export const purchaseInit = () => {
 export const fetchOrderSuccess = (orders) => {
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,
+
     orders: orders,
   };
 };
@@ -57,25 +64,17 @@ export const fetchOrdersStart = () => {
     type: actionTypes.FETCH_ORDERS_START,
   };
 };
-export const fetchOrders = (token, userId) => {
+
+export const fetchOrders = () => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
-    const queryParams =
-      "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
-    axios
-      .get("/orders.json" + queryParams)
-      .then((res) => {
-        const fetchOrdersArray = [];
-        for (let key in res.data) {
-          fetchOrdersArray.push({
-            ...res.data[key],
-            id: key,
-          });
-        }
-        dispatch(fetchOrderSuccess(fetchOrdersArray));
-      })
-      .catch((err) => {
-        dispatch(fetchOrdersFail(err));
-      });
+    const order = JSON.parse(localStorage.getItem("order"));
+    const tranO = order.prt;
+    dispatch(fetchOrderSuccess(tranO));
+    console.log("orderLOCALSTORAGE\n\n\n\n\n\n", order);
+    console.log("FETCHORDERAPP IS SUCESS");
+    if (!order) {
+      dispatch(fetchOrdersFail());
+    }
   };
 };
