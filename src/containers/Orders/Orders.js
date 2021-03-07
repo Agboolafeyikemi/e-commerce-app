@@ -18,11 +18,12 @@ const Orders = (props) => {
     return category.active === false;
   });
 
-  // const disableOrders = deselectCategories.map((category) => {
-  //   return category.products.filter((product) =>
-  //     tranOrders.some((order) => product.name === order.name)
-  //   );
-  // });
+  const disableOrders = deselectCategories.map((category) => {
+    return category.products.filter((product) =>
+      tranOrders.some((order) => product.name === order.name)
+    );
+  });
+  console.log("disableOrders", disableOrders);
 
   let orderList = <Spinner />;
   if (!props.loading) {
