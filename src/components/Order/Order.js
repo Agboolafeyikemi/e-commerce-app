@@ -11,7 +11,9 @@ const order = (props) => {
     });
   }
   let totalPrice = 0;
+  console.log("ig\n\n\n\n\n", cartProducts);
   const cartProductOutput = cartProducts.map((ig) => {
+    console.log("ig\n\n\n\n\n", ig);
     totalPrice += ig.product.id.prt.price;
     return (
       <span

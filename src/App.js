@@ -35,15 +35,17 @@ const App = (props) => {
   );
   // const tranO = JSON.parse(localStorage.getItem("order"));
   // const orders = tranO.prt;
+  console.log("categoryProductAPP\n\n\n\n\n\n", props.categoryProduct);
   console.log("propsAPP\n\n\n\n\n", props);
   const orders = [props.orders];
+  const catProducts = [props.categoryProducts];
   if (props.isAuthenticated) {
     routes = (
       <Switch>
         {/* <Route path="/checkout" render={(props) => <Checkout {...props} />} /> */}
         <Route
           path="/orders"
-          render={(props) => <Orders {...props} {...orders} />}
+          render={(props) => <Orders {...props} {...catProducts} {...orders} />}
         />
         <Route path="/logout" component={Logout} />
         <Route path="/auth" render={(props) => <Auth {...props} />} />
@@ -66,6 +68,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
     orders: state.order.orders,
+    categoryProducts: state.productCategory.categories,
   };
 };
 
@@ -74,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
     onTryAutoSignup: () => dispatch(actions.authCheckState()),
     onFetchOrders: (token, userId) =>
       dispatch(actions.fetchOrders(token, userId)),
+    onInitCategories: () => dispatch(actions.initCategories()),
   };
 };
 
