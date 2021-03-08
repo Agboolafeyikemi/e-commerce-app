@@ -15,7 +15,14 @@
   margin: auto;
   padding: 10px;
 }
-
+@media (max-width: 500px) {
+  .cardList {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 0;
+  }
+}
 .catDividerTitle {
   position: relative;
 }
@@ -73,4 +80,13 @@
 
 .categoryBtn .ant-switch {
   background-color: #8f5c2c;
+}
+
+@media (max-width: 500px) {
+  .catDividerTitle:before {
+    display: none;
+  }
+  .categoryBtn {
+    width: auto;
+  }
 }

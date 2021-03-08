@@ -11,10 +11,10 @@ const order = (props) => {
     });
   }
   let totalPrice = 0;
-  console.log("ig\n\n\n\n\n", cartProducts);
+  console.log("igPRODUCT\n\n\n\n\n", cartProducts);
   const cartProductOutput = cartProducts.map((ig) => {
     console.log("ig\n\n\n\n\n", ig);
-    totalPrice += ig.product.id.prt.price;
+    totalPrice += ig.product.price;
     return (
       <span
         style={{
@@ -24,9 +24,9 @@ const order = (props) => {
           border: "1px solid #ccc",
           padding: "5px",
         }}
-        key={ig.product.id.prt.id}
+        key={ig.product.id}
       >
-        {ig.product.id.prt.name} ({ig.product.id.prt.price})
+        {ig.product.name} ({ig.product.price})
       </span>
     );
   });
