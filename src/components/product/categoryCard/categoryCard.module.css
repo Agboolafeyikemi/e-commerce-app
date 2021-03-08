@@ -10,7 +10,12 @@
   width: 40%;
   margin: auto 20px;
 }
-
+@media (max-width: 500px) {
+  .defaultCard {
+    width: 100%;
+    margin: 15px auto;
+  }
+}
 .defaultCard:hover {
   box-shadow: 0 15px 20px -15px #808080;
 }
@@ -28,7 +33,6 @@
 .cardDetails {
   padding: 0 20px 20px;
   text-align: left;
-
   margin: 12px auto;
 }
 
@@ -88,7 +92,7 @@
 .cartBtn {
   margin: 25px auto;
 }
-.cartBtn button {
+.cartBtn .isActive {
   background-color: #44c767;
   border-radius: 28px;
   border: 1px solid #18ab29;
@@ -102,4 +106,8 @@
 }
 .cartBtn button:hover {
   background-color: #5cbf2a;
+}
+.deActiveBtn {
+  cursor: wait;
+  /* display: ; */
 }

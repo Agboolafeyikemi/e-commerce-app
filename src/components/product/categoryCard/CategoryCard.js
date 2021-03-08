@@ -32,6 +32,7 @@ const CategoryCard = ({
           <button
             onClick={() => addToCart(product)}
             disabled={!isActiveProduct}
+            className={isActiveProduct ? classes.isActive : classes.deActiveBtn}
           >
             {isActiveProduct ? `Add to Cart` : `Product Disable`}
           </button>
