@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./Order.css";
+import classes from "./Order.module.css";
 
 const order = (props) => {
   const cartProducts = [];
@@ -40,6 +40,7 @@ const order = (props) => {
         Total Price:{" "}
         <strong>USD {Number.parseFloat(totalPrice).toFixed(2)}</strong>
       </p>
+      <button>Buy Now</button>
     </div>
   );
 };

@@ -37,10 +37,11 @@
   left: 0;
   background: #565656;
   opacity: 0.3;
-  width: 100%;
+  width: 82%;
   height: 2px;
   transform: translateY(-50%);
   z-index: 0;
+  margin: auto 182px;
 }
 
 .mt-category-card {
@@ -49,8 +50,27 @@
   flex-direction: column;
 }
 .active {
-  background-color: brown;
+  background-color: #703b09;
+  width: 14%;
 }
 .disActive {
-  background-color: yellow;
+  background-color: grey;
+  width: 14%;
+}
+.categoryBtn {
+  width: 14%;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  background: #703b09;
+  color: white;
+  border-radius: 10px;
+  padding: 5px 5px;
+  margin: auto 16px;
+}
+
+.categoryBtn .ant-switch {
+  background-color: #8f5c2c;
 }

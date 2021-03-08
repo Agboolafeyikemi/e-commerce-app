@@ -1,4 +1,4 @@
-export const defaultState = {
+export default {
   categories: [
     {
       name: "Men's  Wear",

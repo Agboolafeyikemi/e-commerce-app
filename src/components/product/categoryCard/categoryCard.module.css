@@ -28,7 +28,6 @@
 .cardDetails {
   padding: 0 20px 20px;
   text-align: left;
-
   margin: 12px auto;
 }
 
@@ -88,7 +87,7 @@
 .cartBtn {
   margin: 25px auto;
 }
-.cartBtn button {
+.cartBtn .isActive {
   background-color: #44c767;
   border-radius: 28px;
   border: 1px solid #18ab29;
@@ -102,4 +101,8 @@
 }
 .cartBtn button:hover {
   background-color: #5cbf2a;
+}
+.deActiveBtn {
+  cursor: wait;
+  /* display: ; */
 }

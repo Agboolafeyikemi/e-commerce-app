@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./productCard.module.css";
 import CategoryCard from "../categoryCard/CategoryCard";
 
-import { Menu, message } from "antd";
+import { Menu, message, Switch } from "antd";
 
 const ProductCard = (props) => {
   const { category, addToCart, handleButtonClick, deselectCategories } = props;
@@ -22,16 +22,28 @@ const ProductCard = (props) => {
   return (
     <div className={classes.categoryList}>
       <div className={classes.container}>
-        <h3 className={classes.catDividerTitle}>
-          <button
-            overLay={menu}
-            onClick={() => handleButtonClick(category.id)}
-            key={category.id}
-            className={category.active ? classes.active : classes.disActive}
-          >
-            {category.name}
-          </button>
-        </h3>
+        <div>
+          <h3 className={classes.catDividerTitle}>
+            <div
+              overLay={menu}
+              // onClick={() => handleButtonClick(category.id)}
+              key={category.id}
+              // className={category.active ? classes.active : classes.disActive}
+            >
+              <div className={classes.categoryBtn}>
+                {category.name}
+                <Switch
+                  key={category.id}
+                  defaultChecked
+                  // className={
+                  // category.active ? classes.active : classes.disActive
+                  // }
+                  onChange={() => handleButtonClick(category.id)}
+                />
+              </div>
+            </div>
+          </h3>
+        </div>
       </div>
       <div className={classes.cardList}>
         {category.products &&
