@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import order from "../../components/Order/Order";
 
 import Order from "../../components/Order/Order";
 import Spinner from "../../components/UI/Spinner/Spinner";

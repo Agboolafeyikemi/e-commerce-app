@@ -1,4 +1,4 @@
-import defaultState from "../state/state";
+import { defaultState } from "../state/state";
 import { updateObject } from "../../shared/utility";
 import * as actionTypes from "../actions/actionTypes";
 
