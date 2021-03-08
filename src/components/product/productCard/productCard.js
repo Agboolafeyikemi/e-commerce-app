@@ -35,9 +35,7 @@ const ProductCard = (props) => {
                 <Switch
                   key={category.id}
                   defaultChecked
-                  // className={
-                  // category.active ? classes.active : classes.disActive
-                  // }
+                  className={classes.switch}
                   onChange={() => handleButtonClick(category.id)}
                 />
               </div>

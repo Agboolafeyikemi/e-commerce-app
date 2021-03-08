@@ -33,10 +33,7 @@ const App = (props) => {
       <Redirect to="/" />
     </Switch>
   );
-  // const tranO = JSON.parse(localStorage.getItem("order"));
-  // const orders = tranO.prt;
-  console.log("categoryProductAPP\n\n\n\n\n\n", props.categoryProduct);
-  console.log("propsAPP\n\n\n\n\n", props);
+
   const orders = [props.orders];
   const catProducts = [props.categoryProducts];
   if (props.isAuthenticated) {

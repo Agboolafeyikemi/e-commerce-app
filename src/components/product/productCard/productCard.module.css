@@ -78,10 +78,9 @@
   margin: auto 16px;
 }
 
-.categoryBtn .ant-switch {
-  background-color: #8f5c2c;
+.switch {
+  background-color: #18ab29 !important;
 }
-
 @media (max-width: 500px) {
   .catDividerTitle:before {
     display: none;
