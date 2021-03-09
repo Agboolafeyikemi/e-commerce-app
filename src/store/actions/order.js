@@ -22,6 +22,7 @@ export const purchaseProductFail = (error) => {
 };
 
 export const purchaseProduct = (order, token) => {
+  console.log("order\n\n\n\n\n\n", order);
   return (dispatch) => {
     dispatch(purchaseProductStart());
     const transformOrder = JSON.stringify(order.prt);

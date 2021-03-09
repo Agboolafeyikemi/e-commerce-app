@@ -9,8 +9,13 @@ const Product = (props) => {
     disabled,
     handleButtonClick,
     deselectCategories,
+    unOrderProducts,
+    unOrderId,
   } = props;
   const productCard = categories.map((cat, index) => {
+    if (cat.active === "active") {
+    }
+
     return (
       <ProductCard
         disabled={disabled}
@@ -19,6 +24,8 @@ const Product = (props) => {
         key={index}
         handleButtonClick={handleButtonClick}
         deselectCategories={deselectCategories}
+        unOrderProducts={unOrderProducts}
+        unOrderId={unOrderId}
       />
     );
   });
