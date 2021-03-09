@@ -11,7 +11,15 @@ const CategoryCard = ({
   price,
   addToCart,
   isActiveProduct,
+  parentCategory,
+  unOrderProducts,
 }) => {
+  const clickedCategory = {
+    parentCategory: parentCategory,
+    product: product,
+  };
+  // console.log("parentId\n\n\n\n\n", parentId);
+
   return (
     <div className={classes.defaultCard} key={id}>
       <div className={classes.cardImg}>
@@ -30,7 +38,7 @@ const CategoryCard = ({
         </div>
         <div className={classes.cartBtn}>
           <button
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart(clickedCategory)}
             disabled={!isActiveProduct}
             className={isActiveProduct ? classes.isActive : classes.deActiveBtn}
           >

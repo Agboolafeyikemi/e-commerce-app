@@ -5,7 +5,14 @@ import CategoryCard from "../categoryCard/CategoryCard";
 import { Menu, message, Switch } from "antd";
 
 const ProductCard = (props) => {
-  const { category, addToCart, handleButtonClick, deselectCategories } = props;
+  const {
+    category,
+    addToCart,
+    handleButtonClick,
+    deselectCategories,
+    unOrderProducts,
+    unOrderId,
+  } = props;
 
   function handleMenuClick(e) {
     message.info("Click on menu item.");
@@ -18,7 +25,9 @@ const ProductCard = (props) => {
       <Menu.Item key="2">Enable</Menu.Item>
     </Menu>
   );
-
+  // if (product.includes(unOrderProducts)) {
+  //   console.log("YESYESYESYES\n\\n\n\n\n\n\n");
+  // }
   return (
     <div className={classes.categoryList}>
       <div className={classes.container}>
@@ -47,7 +56,13 @@ const ProductCard = (props) => {
         {category.products &&
           category.products.map(({ name, avatar, id, price }) => {
             const product = { name, avatar, id, price };
-            const isActiveProduct = category.active;
+            let isActiveProduct = category.active;
+            if (category.id === unOrderId) {
+              const arr = [];
+              unOrderProducts.map((prod, index) => arr.push(prod.name));
+              const isunOrderProduct = !arr.includes(name);
+              isActiveProduct = isunOrderProduct;
+            }
             return (
               <CategoryCard
                 key={id}
@@ -59,6 +74,8 @@ const ProductCard = (props) => {
                 addToCart={addToCart}
                 isActiveProduct={isActiveProduct}
                 deselectCategories={deselectCategories}
+                parentCategory={category}
+                unOrderProducts={unOrderProducts}
               />
             );
           })}

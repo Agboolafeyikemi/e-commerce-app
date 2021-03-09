@@ -11,7 +11,8 @@ const Categories = (props) => {
   const [purchasing, setPurchasing] = useState(false);
 
   const dispatch = useDispatch();
-
+  const [unOrderProducts, setunOrderProducts] = useState([]);
+  const [unOrderId, setunOrderId] = useState();
   const categoryProducts = useSelector((state) => {
     return state.productCategory.categories;
   });
@@ -21,6 +22,7 @@ const Categories = (props) => {
   const deselectCategories = useSelector(
     (state) => state.productCategory.deselectCategories
   );
+  console.log(deselectCategories, "DESELCET\n\n\n\n\n\n\n");
   const error = useSelector((state) => state.productCategory.error);
   const isAuthenticated = useSelector((state) => state.auth.token !== null);
   const token = useSelector((state) => state.auth.token !== null);
@@ -41,12 +43,24 @@ const Categories = (props) => {
   useEffect(() => {
     onInitCategories();
   }, [onInitCategories]);
+  const addCartHandler = (category) => {
+    console.log("category\n\n\n\n\naddCartHandler", category);
 
-  const addCartHandler = (product) => {
     if (isAuthenticated) {
+      const { parentCategory, product } = category;
+      setunOrderProducts(
+        parentCategory.products.filter((prt) => prt.name !== product.name)
+      );
+      setunOrderId(parentCategory.id);
+      console.log("categoryProducts.id\n\n\n\n\n", parentCategory.id);
+      //  productCategory.products.filter(
+      // (prodt) => prodt.name !== product.name)
+      // console.log(catProducts, "\n\n\n\n\n\n\ncatProducts");
+      // );
+
       setPurchasing(true);
       const order = {
-        prt: product,
+        prt: category,
         userId: userId,
       };
 
@@ -77,6 +91,8 @@ const Categories = (props) => {
           categories={categoryProducts}
           handleButtonClick={onCategorydeselect}
           deselectCategories={deselectCategories}
+          unOrderProducts={unOrderProducts}
+          unOrderId={unOrderId}
         />
       </Fragment>
     );
